@@ -14,6 +14,6 @@ echo "Deploying webapp containers done"
 sleep 10
 echo "Deploying HAproxy container..."
 docker rm haproxy -f >/dev/null 2>&1 || true
-docker run -d --name haproxy \-p 80:80 \-v /tmp/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro \haproxy:3.1
+docker run -d --name haproxy \-p 9090:80 \-v /tmp/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro \haproxy:3.1
 docker ps |grep -i haproxy*
 echo "Deploying HAproxy container done"
