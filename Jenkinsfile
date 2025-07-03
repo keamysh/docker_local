@@ -34,7 +34,7 @@ pipeline{
             steps{
                 echo "Deploying Application to Tomcat"
                 // sh "rm -rf '/tmp/demojenkins'"
-                deploy adapters: [tomcat9(credentialsId: 'tomcat2', path: '', url: 'https://your-url/manager/text')], contextPath: null, war: 'target/*.war'
+                deploy adapters: [tomcat9(credentialsId: 'tomcat2', path: '', url: 'https://your-url/manager/text')], contextPath: 'web-app', war: 'target/*.war'
             }
         }
     }
