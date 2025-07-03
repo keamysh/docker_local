@@ -34,7 +34,7 @@ pipeline{
             steps{
                 echo "Deploying Application to Tomcat"
                 // sh "rm -rf '/tmp/demojenkins'"
-                deploy adapters: [tomcat9(credentialsId: 'tomcat2', path: '', url: 'https://98df-142-198-195-76.ngrok-free.app')], contextPath: null, war: 'target/*.war'
+                deploy adapters: [tomcat9(credentialsId: 'tomcat2', path: '', url: 'https://98df-142-198-195-76.ngrok-free.app')], contextPath: null, war: war: 'target/maven-web-application.war'
             }
         }
     }
