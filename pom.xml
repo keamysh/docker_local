@@ -1,3 +1,5 @@
+
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
         <modelVersion>4.0.0</modelVersion>
@@ -20,9 +22,9 @@
         <properties>
                 <jdk.version>1.8</jdk.version>
                 <spring.version>5.1.2.RELEASE</spring.version>
-                <junit.version>4.11</junit.version>
+				<junit.version>4.11</junit.version>
                 <log4j.version>1.2.17</log4j.version>
-                <sonar.host.url>http://192.168.44.167:9000</sonar.host.url>
+                <sonar.host.url>http://sonarqube:9000</sonar.host.url>
                 <sonar.login>admin</sonar.login>
                 <sonar.password>sonar</sonar.password>
                 <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -40,7 +42,7 @@
                 </dependency>
 
                 <!-- test dependencies -->
-                <dependency>
+				<dependency>
                         <groupId>junit</groupId>
                         <artifactId>junit</artifactId>
                         <version>3.8.1</version>
@@ -60,9 +62,9 @@
                         <version>1.9.5</version>
                         <scope>test</scope>
                 </dependency>
-                  <!-- compile dependencies -->
 
-                <dependency>
+                <!-- compile dependencies -->
+				<dependency>
                         <groupId>org.springframework</groupId>
                         <artifactId>spring-core</artifactId>
                         <version>${spring.version}</version>
@@ -82,8 +84,7 @@
                         <artifactId>spring-context</artifactId>
                         <version>${spring.version}</version>
                 </dependency>
-
-                <!-- provided dependencies -->
+				<!-- provided dependencies -->
 
                 <dependency>
                         <groupId>javax.servlet</groupId>
@@ -98,54 +99,19 @@
             <repository>
               <id>acada-release</id>
               <name>ACADA Learning release Nexus Repository</name>
-              <url>http://192.168.44.167:8089/nexus/content/repositories/acada-release/</url>
+              <url>http://nexus:8081/repository/maven-release-acada/</url>
             </repository>
 
             <snapshotRepository>
               <id>acada-snapshot</id>
               <name>ACADA Learning snapshot Nexus Repository </name>
-              <url>http://192.168.44.167:8089/nexus/content/repositories/acada-snapshot/</url>
-            </snapshotRepository>
+              <url>http://nexus:8081/repository/maven-snapshot-acada/</url>
+			  </snapshotRepository>
 
         </distributionManagement>
 
         <build>
                 <finalName>web-app</finalName>
-
-        <plugin>
-    <groupId>org.codehaus.cargo</groupId>
-    <artifactId>cargo-maven2-plugin</artifactId>
-    <version>1.10.8</version>
-    <configuration>
-        <container>
-            <containerId>tomcat9x</containerId>
-            <type>remote</type>
-        </container>
-        <configuration>
-            <type>runtime</type>
-            <properties>
-               <cargo.remote.username>acada</cargo.remote.username>
-<cargo.remote.password>admin123</cargo.remote.password>
-<cargo.hostname>192.168.1.71</cargo.hostname> <!-- IP of the machine running Tomcat -->
-<cargo.servlet.port>8080</cargo.servlet.port>
-            </properties>
-        </configuration>
-        <deployer>
-            <type>remote</type>
-        </deployer>
-        <deployables>
-            <deployable>
-                <groupId>com.mt</groupId>
-                <artifactId>maven-web-application</artifactId>
-                <type>war</type>
-                <properties>
-                    <context>maven-web-application</context>
-                </properties>
-            </deployable>
-        </deployables>
-    </configuration>
-</plugin>
-
 
                 <plugins>
                         <plugin>
@@ -156,14 +122,13 @@
                         <plugin>
                                 <groupId>org.apache.maven.plugins</groupId>
                                 <artifactId>maven-compiler-plugin</artifactId>
-                                  <version>3.3</version>
+                                <version>3.3</version>
                                 <configuration>
                                         <source>${jdk.version}</source>
                                         <target>${jdk.version}</target>
                                 </configuration>
                         </plugin>
-
-                        <plugin>
+						 <plugin>
                                 <groupId>org.eclipse.jetty</groupId>
                                 <artifactId>jetty-maven-plugin</artifactId>
                                 <version>9.2.11.v20150529</version>
@@ -185,7 +150,7 @@
                                         <wtpversion>2.0</wtpversion>
                                         <wtpContextName>maven-web-application</wtpContextName>
                                 </configuration>
-                        </plugin>
+								  </plugin>
 
 </plugins>
         </build>
