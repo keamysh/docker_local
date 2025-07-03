@@ -112,6 +112,41 @@
         <build>
                 <finalName>web-app</finalName>
 
+        <plugin>
+    <groupId>org.codehaus.cargo</groupId>
+    <artifactId>cargo-maven2-plugin</artifactId>
+    <version>1.10.8</version>
+    <configuration>
+        <container>
+            <containerId>tomcat9x</containerId>
+            <type>remote</type>
+        </container>
+        <configuration>
+            <type>runtime</type>
+            <properties>
+                <cargo.hostname>192.168.1.71</cargo.hostname> <!-- or your Tomcat host IP -->
+                <cargo.servlet.port>8080</cargo.servlet.port>
+                <cargo.remote.username>admin</cargo.remote.username>
+                <cargo.remote.password>admin123</cargo.remote.password>
+            </properties>
+        </configuration>
+        <deployer>
+            <type>remote</type>
+        </deployer>
+        <deployables>
+            <deployable>
+                <groupId>com.mt</groupId>
+                <artifactId>maven-web-application</artifactId>
+                <type>war</type>
+                <properties>
+                    <context>maven-web-application</context>
+                </properties>
+            </deployable>
+        </deployables>
+    </configuration>
+</plugin>
+
+
                 <plugins>
                         <plugin>
                                 <groupId>org.apache.maven.plugins</groupId>
