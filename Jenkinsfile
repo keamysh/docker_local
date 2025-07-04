@@ -25,7 +25,7 @@ pipeline {
         }
         stage('Push Image to Repo') {
             steps{
-                withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                withCredentials([usernamePassword(credentialsId: 'docker_hub_cred', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
                     sh 'echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin'
                     sh 'docker push keamysh/tomcat:latest'
                 }
