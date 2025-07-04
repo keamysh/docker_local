@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Deploying webapp containers..."
-docker pull keamysh/acada:latest
+docker pull keamysh/tomcat:latest
 
 echo "Creating network"
 docker network create acada-app
