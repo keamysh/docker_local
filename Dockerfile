@@ -2,7 +2,7 @@
 FROM tomcat:9.0
 
 # Deploy your application WAR
-COPY target/*.war /usr/local/tomcat/webapps/web_artifact.war
+# COPY target/*.war /usr/local/tomcat/webapps/web_artifact.war
 
 # Restore manager and host-manager apps (required for Jenkins remote deployment)
 RUN cp -r /usr/local/tomcat/webapps.dist/manager /usr/local/tomcat/webapps/manager && \
