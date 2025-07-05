@@ -6,12 +6,21 @@ docker pull keamysh/tomcat:latest
 echo "Creating network"
 docker network create acada-app
 
-for i in {1..6}; 
-do
-docker stop acada-webapp$i ; docker rm -f acada-webapp$i || true
-docker run -d --name acada-webapp$i --hostname acada-webapp$i --network acada-app keamysh/acada:latest;
-echo "Deploying webapp$i container done"
+for i in {1..6}; do
+    docker stop acada-webapp$i >/dev/null 2>&1
+    docker rm -f acada-webapp$i >/dev/null 2>&1
+    host_port=$((8080 + i)) # maps 8081, 8082, ..., 8086
+
+    docker run -d \
+        --name acada-webapp$i \
+        --hostname acada-webapp$i \
+        --network acada-app \
+        -p $host_port:8080 \
+        keamysh/acada:latest
+
+    echo "Deploying webapp$i container on port $host_port done"
 done
+
 
 sleep 10
 
